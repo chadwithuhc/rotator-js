@@ -1,4 +1,4 @@
-﻿# Rotator.js
+﻿# Rotator.js  
 A javascript banner rotator built on jQuery with extensive features and expandability.
 
 ---

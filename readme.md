@@ -1,4 +1,4 @@
-# Rotator.js
+# Rotator.js  
 A javascript banner rotator built on jQuery with extensive features and expandability.
 
 ---
@@ -22,4 +22,4 @@ Please view the documentation for changelog, planned future enhancements and som
 
 ## License
 
-Rotator.js is released under the [MIT License](http://web.cmfolio.com/projects/rotator/#license) by [cmfolio](http://web.cmfolio.com) & [agroism.com](http://agroism.com).
+**Rotator.js** is released under the [MIT License](http://web.cmfolio.com/projects/rotator/#license) by [cmfolio](http://web.cmfolio.com) & [agroism.com](http://agroism.com).
