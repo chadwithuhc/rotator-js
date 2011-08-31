@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+<title>4 banner rotation example | Rotator.js</title>
+
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<!--script src="../js/dbug.js" type="text/javascript"></script-->
+<script src="../js/rotator.js" type="text/javascript"></script>
+
+<style type="text/css">
+	#consoleWindow {display: none; position: absolute; top:30px; right: 30px; border: 3px #c00 solid; padding: 15px;z-index: 400;background: #fff;opacity: .75;width: 300px;font-family: "Lucida Sans"; font-size: 11px;cursor: default;}
+	#consoleWindow h3 {font-size:13px;margin: 0px 0 5px 0;}
+	#consoleWindow .msg {padding: 2px; border-bottom: 1px #ccc dotted;}
+	#consoleWindow .msg .digit {color: #ccc;}
+	#consoleWindow:hover {opacity: 1}
+	ul, li { margin: 0px; padding: 0px }
+	a, img { border: 0px }
+	.wrapper { margin: 0px auto; width: 980px }
+	
+	#marquee {height: 360px; width: 980px; position: relative }
+	#rotator { position: relative; width: 980px; height: 360px; overflow: hidden; background-color: white }
+	#rotator .slide { width: 980px; height: 360px; position: absolute; top: 0px; left: 0px; overflow: hidden; background: white; display: none }
+	
+	#slides { position: relative; width: 980px; height: 360px; overflow: hidden; }
+	#slides .slide { width: 980px; height: 360px; position: absolute; top: 0px; left: 0px; z-index: 1; border-left: solid 10px #c00; overflow: hidden; background: white; display: block; }
+	
+	#rotator-nav { display: block; position: absolute; bottom: 10px; right: 10px; z-index: 5000; background: white; opacity: .5; filter: alpha(opacity=40); padding: 4px; -moz-border-radius: 4px }
+	#rotator-nav:hover { opacity: 1; filter: alpha(opacity=100) }
+	#rotator-nav li { display: block; float: left; padding: 0px 2px }
+	#rotator-nav a { border: solid 1px #aaa; color: #aaa; font: normal 12px Arial; padding: 2px 3px; text-decoration: none; -moz-border-radius: 2px; outline: none }
+	#rotator-nav a:hover { color: #0063B1; border-color: #0063B1 }
+	.loading { background: url(http://us.toshiba.com/images/loading.gif) 50% 50% no-repeat }
+</style>
+</head>
+
+<body>
+<a href="#stop" id="stop">Stop</a>
+<div id="home" class="wrapper">
+	<h1>4 banner rotation example</h1>
+	<div id="marquee">
+		<ul id="rotator" class="loading">
+			<li class="slide" slide_name="T100LightenUp"><a href="/laptops/satellite/T100"><img height="360" width="980" alt="Lighten Up. Introducing the new Satellite&reg; T100 series. Finally, an ultrathin laptop that doesn't sacrifice performance." src="http://laptops.toshiba.com/images/showcase/homepage/banners/satellite-t100-lighten-up.jpg" /></a></li>
+			<li class="slide" slide_name="QosmioX500New"><a href="/laptops/qosmio/X500"><img height="360" width="980" alt="Performance Unleashed. Meet the Qosmio&reg; X500 featuring Core&trade; i7 power." src="http://laptops.toshiba.com/images/showcase/homepage/banners/qosmio-x500-best-laptop.jpg" /></a></li>
+			<li class="slide" slide_name="ToshibaOnTV"><a href="/commercials"><img height="360" width="980" alt="Toshiba on TV. See our latest ads &raquo;" src="http://laptops.toshiba.com/images/showcase/homepage/banners/toshiba-on-tv.jpg" /></a></li>
+			<li class="slide" slide_name="TecraA11"><a href="/laptops/tecra/A11"><img height="360" width="980" alt="Dressed for success. Meet the newly redesigned Tecra A11 Series." src="http://laptops.toshiba.com/images/showcase/homepage/banners/tecra-a11.jpg" /></a></li>
+			<li class="slide" slide_name="HTMLText">
+				<h4>This is a totally different slide.</h4>
+				<p>Here we will demonstrate the abilty to slide through HTML content.</p>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam sit amet elit vitae arcu interdum ullamcorper. Nullam ultrices, nisi quis scelerisque convallis, augue neque tempor enim, et mattis justo nibh eu elit. Quisque ultrices gravida pede. Mauris accumsan vulputate tellus. Phasellus condimentum bibendum dolor. Mauris sed ipsum. Phasellus in diam. Nam sapien ligula, consectetuer id, hendrerit in, cursus sed, leo. Nam tincidunt rhoncus urna. Aliquam id massa ut nibh bibendum imperdiet. Curabitur neque mauris, porta vel, lacinia quis, placerat ultrices, orci.</p>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+jQuery(function($) {
+  var r = $('#rotator').rotator({ interval: 2000 });
+  $('#stop').click(function() { r.stop() });
+});
+</script>
+</body>
+</html>
