@@ -3,16 +3,6 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 
 ---
 
-## Features  
-- Flexible enough to use as a rotator, gallery, slideshow and more.
-- Can be used as a jQuery object or instance of `$.Rotator()` for full control.
-- Generates a nav to switch between slides.
-- Allows transitions to be added or overwritten. Already includes *swipe* and *fade*.
-- Has events for calling custom functions onLoad, onStart, onStop, onChange, onClick and onNavClick
-- Many config options allow extreme flexibility without modifying core code.
-
----
-
 ## Changelog  
 
 ### v0.9.6 / 6.20.2011 In Development
