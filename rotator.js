@@ -1,11 +1,12 @@
 ﻿(function ($) {
 
-	/* Rotator v0.9.6 R06.20.11 */
+	/* Rotator v0.9.7 R11.18.2011 */
 	$.Rotator = function (element, options) {
 
 		var defaults = {
 			first: 1, // which slide num to start at
 			random: false, // start at a random slide (overrides config.first)
+			reorderSlides: false, // reorder the slides by rewriting to DOM if they are in random order
 			transition: 'fade', // transition name
 			transitionDuration: 1000, // effect speed in milliseconds
 			transitions: {}, // pass in additional transitions at generation
@@ -29,9 +30,11 @@
 			stopOnClick: true, // stop rotating on nav click
 			loadingClassName: 'loading', // class name of loading class
 			autostart: true, // whether or not to autostart rotation
+			quickLoad: false, // load without waiting for images
 			zIndex: 10, // z-index to start at
-			ieFadeFix: false, // IE has problems with complete black in fading images
+			//ieFadeFix: false, // IE has problems with complete black in fading images; DEPRECATED
 			events: { // trigger events that are available
+				onInit: function (data) { },
 				onLoad: function (data) { },
 				onFirstStart: function (data) { },
 				onStart: function (data) { },
@@ -82,7 +85,16 @@
 				tmpSlides[i - 1] = $(this).attr(config.slideIdAttr, i).addClass(config.slidesNumClass.replace(/\#/, i).replace(/\./, ''))[0];
 				i++;
 			});
+
+			// slides DOM reordering
+			if (config.reorderSlides == true && config.random == true) {
+				base.slides.remove();
+				base.element.append(tmpSlides);
+			}
+
+			// recollect
 			base.slides = $(tmpSlides);
+			current = base.slides.eq(0).css({ zIndex: config.zIndex });
 
 			// slides clicking event
 			base.slides.find('a').click(function (e) {
@@ -97,52 +109,76 @@
 				buildNav();
 			}
 
+			// init event
+			base.runEvent('onInit');
+
 			// when the first slide is done loading, show the rotator.
 			var loadFn = function () {
 				config.rotatorLoaded = true;
-				current = base.slides.eq(0).css({ zIndex: config.zIndex }).fadeIn(500, function () { base.runEvent('onLoad') });
 				base.element.removeClass(config.loadingClassName);
-				if (!!config.nav && base.slides.length > 1) {
-					base.nav.steps.eq(0).addClass(config.currentNavClass.replace(/\./g, '')).end().end().fadeIn();
+				
+				config.events.onLoadDefault = function() {
+					current.fadeIn(500);
+
+					// fade in the nav
+					if (base.nav) {
+						base.nav.fadeIn();
+					}
+				};
+				// if no onLoad event, run default loading event
+				if (!options.events) {
+					config.events.onLoadDefault();
 				}
+				else if (!options.events.onLoad) {
+					config.events.onLoadDefault();
+				}
+
+				// run onLoad event
+				base.runEvent('onLoad');
+
 				// autostart rotating
 				if (config.autostart == true && base.slides.length > 1) {
 					base.start();
 				}
-				// if ie fade fix
-				if (config.ieFadeFix == true) {
-					setTimeout(function () { base.element.css({ backgroundColor: 'black' }) }, 700);
-				}
 			}
-			// wait for the first image to load, then start
-			if (base.slides.eq(0).find('img').length > 0) {
-				base.slides.eq(0).find('img').load(loadFn);
+			// quickloader
+			if (config.quickLoad == true) {
+				loadFn();
 			}
-			// if no images, wait for first slide to load, then start
+			// otherwise start after loading
 			else {
-				base.slides.eq(0).load(loadFn);
-			}
-			// if we still havent started by the time the window loads, then just start
-			$(window).load(function () {
-				if (config.rotatorLoaded != true) {
+				// wait for the first image to load, then start
+				var first_img = current.find('img');
+				if (first_img.length > 0) {
+					first_img.one('load', loadFn);
+				}
+				// if no images, just start
+				else {
 					loadFn();
 				}
-			});
+				
+				// otherwise if we still haven't started by the time the window loads, then just start
+				$(window).load(function () {
+					if (config.rotatorLoaded != true) {
+						loadFn();
+					}
+				});
+			}
 
 			return base;
 		} // end init
 
 		// start the rotation
 		base.start = function () {
-			startInterval();
 			base.runEvent('onStart');
+			startInterval();
 			return base;
 		}
 
 		// stops the rotation
 		base.stop = function () {
-			stopInterval();
 			base.runEvent('onStop');
+			stopInterval();
 			return base;
 		}
 
@@ -158,6 +194,10 @@
 
 		// gets the id of the current shown slide
 		base.current = function () {
+			// return -1 if it's not applicable yet; this should never happen
+			if (typeof current == 'undefined') {
+				return -1;
+			}
 			return parseInt(current.attr(config.slideIdAttr));
 		}
 
@@ -175,8 +215,8 @@
 				return base;
 			}
 
-			// increase z-index
-			config.zIndex = config.zIndex + 2;
+			// increase z-index if integer
+			config.zIndex = (config.zIndex !== 'auto' && typeof parseInt(config.zIndex) == 'number') ? parseInt(config.zIndex) + 2 : config.zIndex;
 
 			// add some additional data to the slides
 			var settings = { transitionDuration: config.transitionDuration, zIndex: config.zIndex }
@@ -200,6 +240,12 @@
 
 			return base;
 		}
+
+		// applies the ie fading fix
+		base.ieFadeFix = function (enable) {
+			base.element.css({ backgroundColor: (enable || true) ? 'black' : 'transparent' });
+			return base;
+		};
 
 		// grabs rotator and slide data at time of event
 		base.getEventData = function () {
@@ -364,7 +410,7 @@
 					case 'stop':
 						base.stop();
 						break;
-					// its got to be a slide num 
+					// its got to be a slide num       
 					default:
 						base.goTo(slideIdAttr);
 				}
@@ -375,6 +421,9 @@
 			if (config.nav.position == 'before') {
 				base.element.before(base.nav);
 			}
+			else if (config.nav.position == 'inside') {
+				base.element.append(base.nav);
+			}
 			else {
 				base.element.after(base.nav);
 			}
@@ -382,6 +431,8 @@
 			// set some shortuts
 			base.element.nav = base.nav;
 			base.nav.steps = base.nav.find('.step');
+			// set first slide to current
+			base.nav.steps.eq(0).addClass(config.currentNavClass.replace(/\./g, ''));
 		}
 
 		// initiate the Rotator
@@ -390,7 +441,7 @@
 
 	// jQuery bridge
 	$.fn.rotator = function (options) {
-		return this.each(function() {
+		return this.each(function () {
 			return new $.Rotator(this, options || {});
 		});
 	};

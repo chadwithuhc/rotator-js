@@ -3,8 +3,8 @@
 <head>
     <title>Side Swipe Example | Rotator.js</title>
 		<link rel="Stylesheet" href="../styles/examples.css" />
-		<script src="../../js/jquery.min.js" type="text/javascript"></script>
-		<script src="../../js/rotator.js" type="text/javascript"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
+		<script src="../../rotator.js" type="text/javascript"></script>
 		<style type="text/css">
 			/* default rotator styles */
 			#example_1 { position: relative; width: 980px; height: 50px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
@@ -26,7 +26,17 @@
 		</style>
 		<script type="text/javascript">
 		jQuery(function ($) {
-			window.examples = $('.rotator').rotator({ autostart: true, nav: { next: true, numbers: true, prev: true } });
+			window.example_1 = $('#example_1').rotator({ autostart: true, nav: { next: true, numbers: true, prev: true} });
+
+			var events = {
+				onInit: function (data) {
+					data.rotator.element.animate({ position: 'relative', left: 50 }, 2000);
+				},
+				onStart: function (data) {
+					data.rotator.element.animate({ width: 400, height: 200 }, 1000, function () { data.rotator.ieFadeFix() });
+				}
+			};
+			window.example_2 = $('.rotator2').rotator({ random: true, reorderSlides: true, autostart: true, quickLoad: true, nav: { next: true, numbers: true, prev: true, position: 'inside' }, events: events });
 		});
 		</script>
 </head>
@@ -40,7 +50,7 @@
 	<p><strong>Useful for:</strong> Ad Spots, Multiple Galleries</p>
 	
 	<!-- Example 1 -->
-	<h2>Example: Side Swipe with HTML content</h2>
+	<h2>Example: Fading with HTML content</h2>
 	<p>This example uses HTML as if it were a blog post. Each HTML block is wrapped in a <code>&lt;div&gt;</code></p>
 	<div id="example_1" class="rotator loading">
 		<div class="slide">
@@ -65,11 +75,11 @@
 	<h2>Example: Side Swipe with images</h2>
 	<p>This example has only images wrapped in a <code>&lt;ul&gt;</code> with <code>&lt;li&gt;</code>'s</p>
 	<ul class="rotator rotator2 loading">
-		<li class="slide"><img src="../images/300/1.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/2.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/3.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/4.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/5.jpg" alt="" /></li>
+		<li class="slide 1"><img src="../images/300/1.jpg" alt="" /></li>
+		<li class="slide 2"><img src="../images/300/2.jpg" alt="" /></li>
+		<li class="slide 3"><img src="../images/300/3.jpg" alt="" /></li>
+		<li class="slide 4"><img src="../images/300/4.jpg" alt="" /></li>
+		<li class="slide 5"><img src="../images/300/5.jpg" alt="" /></li>
 	</ul>
 
 </div>

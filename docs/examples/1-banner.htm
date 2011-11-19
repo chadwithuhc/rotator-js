@@ -3,8 +3,8 @@
 <head>
     <title>1 Banner HTML Example | Rotator.js</title>
 		<link rel="Stylesheet" href="../styles/examples.css" />
-		<script src="../../js/jquery.min.js" type="text/javascript"></script>
-		<script src="../../js/rotator.js" type="text/javascript"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
+		<script src="../../rotator.js" type="text/javascript"></script>
 		<style type="text/css">
 			/* default rotator styles */
 			#rotator { position: relative; width: 980px; height: 360px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
@@ -20,7 +20,7 @@
 		</style>
 		<script type="text/javascript">
 		jQuery(function ($) {
-			var rotator = $('#rotator').rotator({  });
+			var rotator = $('#rotator').rotator({ autostart: true, events: {  } });
 		});
 		</script>
 </head>

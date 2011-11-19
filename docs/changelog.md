@@ -5,11 +5,23 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 
 ## Changelog  
 
-### v0.9.6 / 6.20.2011 In Development
-- Changed global object to be `base` instead of `$this`, doesn't affect external code
+### v0.9.7 / 11.18.2011 In Development
+- Change: the Rotator now auto fades in if no `onStart` event is set and style displayed none (allows you to override fading)
+- Added `inside` option for `nav.position` which will append to base element
+- Added `onInit()` event. Runs post init.
+- Added `config.quickLoad` to skip waiting for images to load
+- Added `config.reorderSlides` to rewrite the slides to the DOM in the right order if `config.random` is true
+- Added `base.ieFadeFix(enable)` to enable / disable fix at any time
+- Removed `config.ieFadeFix`, if you want to fix use `base.ieFadeFix()` now
+- Bug Fix: `config.zIndex` wouldn't correctly accept `auto` as value
+- Bug Fix: `onStart()` was running before `onLoad()`
+- Bug Fix: if the slides weren't set to `display: none` then `current` would become `undefined`
+
+### v0.9.6 / 6.20.2011
+- Changed global object to be `base` instead of `$this`, doesn't affect non-core code
 - Changed nav icons to default to `&bull;` and allow `nav.icons` to be set to HTML
 - Bug Fix: Rotator properly stops when only one slide is detected
-- Multiple banners on one page IS working
+- Multiple banners on one page *IS* working
 
 ### v0.9.5 / 5.12.2011
 - Added jQuery objects to global object:
