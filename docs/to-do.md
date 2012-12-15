@@ -4,7 +4,7 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 ---
 
 ## Bugs
-- No known bugs
+- `swipe` transition only works on images
 
 ## Planned Enhancements
 - Add more `navClicked` data
