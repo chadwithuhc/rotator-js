@@ -1,0 +1,83 @@
+﻿/**
+* Docs - A theme for Docs built on Skeleton
+*
+* @author   cmfolio
+* @website  http://web.cmfolio.com/projects/docs-template/
+* @license  MIT License
+*/
+
+@import '../skeleton/base.css';
+@import '../skeleton/skeleton.css';
+@import '../skeleton/layout.css';
+
+/* default styles */
+body { padding: 2em 20px 500px }
+a:link, a:visited { color: blue; font-weight: bold; text-decoration: none }
+a:hover, a:active { color: #c00 }
+/* skeleton override */
+h1, h2, h3, h4, h5, h6 { font-family: inherit; font-size: 1.3em; font-weight: bold }
+
+/*@ main title */
+#title, .title { font-size: 3em; padding: 1% 1% 0; margin-bottom: 2%; line-height: 1.4em; float: left; background: #ff9 }
+#description, h2 { font-size: 1.6em; line-height: 1.4em; font-weight: bold; clear: left }
+
+/*@ toc */
+#toc-link { position: fixed; top: 0px; left: 0px; z-index: 10000; width: 60%; text-align: right; padding: 0 20%; line-height: 2em; background: black; color: white; text-decoration: underline }
+#toc li { /* skeleton fix */ margin-bottom: 0; line-height: inherit }
+#toc .child { margin: 0 15px }
+#toc .child li { list-style: circle inside }
+#toc .child span.arrow { display: none }
+span.arrow { font-weight: bold; color: #c00 }
+
+/*@ content */
+.title { font-size: 2em; padding-top: 0 }
+code, pre { background: #e6ebeb; font-family: Courier; padding: 2px; margin: 0px; color: #666; white-space: pre-wrap }
+code span { font-family: Courier, monospace }
+pre { margin-bottom: 20px }
+var { color: #c00; font-family: Courier, monospace }
+ul.list li { list-style: disc; margin-left: 15px }
+ol.numbers { margin-left: 20px }
+ol.numbers li { list-style-type: decimal; list-style-position: outside; margin-left: 5px }
+p, ul, ol {  }
+ul ul { padding: 0 }
+li { color: #000 }
+.nopad { padding: 0; margin: 0 }
+p.nopad { margin-bottom: 5px }
+.section { padding: 20px 0px 10px; border-top: dotted 1px #333 }
+.clear { clear: both }
+.title + .description { margin: 0 1em 2%; padding: .5em; vertical-align: middle; border-bottom: dashed 1px #ccc; float: right; text-align: right }
+.description + .meta, .title + .meta { float: right; font-style: italic; margin: -2% 1em 1%; padding: .5em; text-align: right }
+.title + .meta { margin-top: 0 }
+.hr { margin: 10px auto 20px; width: 100px; border-top: double 4px #c00 }
+.anchor { padding-top: 20px }
+.pre { white-space: pre-wrap }
+/* clearing */
+.title + .columns,
+.section .intro { clear: left }
+/* notices */
+.note { display: block; padding: 10px; background: #ffc }
+.important { display: block; padding: 10px; background: #fcc }
+/* examples */
+.example { display: block; border: solid 1px #ccc; padding: 10px; overflow: hidden; margin-bottom: 20px }
+.example .caption { color: #aaa; text-transform: uppercase; display: block; padding: 2px 5px; margin: -10px 0 10px -10px; width: 200%; border-bottom: solid 1px #eee }
+.example.nopad { padding: 0 }
+.example.nopad .caption { margin: 0 }
+
+/*@ api */
+.api_item { margin: 0 30px }
+.option { font-size: 20px; font-weight: bold; padding: 20px 0px 5px; margin-bottom: 5px; color: #666; border-bottom: dashed 1px #aaa }
+.option .chain { font-size: small; color: #aaa }
+/* params */
+.params { border-left: double 3px #ddd; padding-left: 7px; margin-left: 2px; margin-bottom: 15px }
+.params dt { font-weight: bold; display: block; float: left; clear: left; margin-right: 5px }
+.params dd { display: block; float: left; color: #666; font-style: italic }
+.params dd var { font-style: normal }
+.params dd small { color: #aaa; text-transform: uppercase; font-style: normal }
+dl.params:before,
+dl.params:after {content: '\0020';display: block;overflow: hidden;visibility: hidden;width: 0;height: 0; }
+dl.params:after { clear: both; }
+dl.params { zoom: 1; }
+
+/* syntax coloring overrides */
+pre .title,
+pre .params { /* override */ font-size: inherit; line-height: inherit; font-weight: inherit; float: inherit; padding: inherit; margin: inherit; background: inherit; float: inherit; clear: inherit }

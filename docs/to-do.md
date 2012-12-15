@@ -6,11 +6,16 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 ## Bugs
 - No known bugs
 
-## Future Enhancements
-- Change swipe to go forward or backward based on direction
-- Add more navClicked data
+## Planned Enhancements
+- Add more `navClicked` data
 - Run Events through jQuery instead
 - Allow `nav` config to be set to true
+- Add `moving` direction property to `config` in transitions
+- Add `total` slide count property to `config` in transitions
 - Update docs to reflect transition config options
-- Change `slides` config options to singular
-- Add `nav` wrapper posibility
+- Add `nav` wrapper possibility
+- Allow passing in your own `nav` object
+- Take advantage of `.data()`
+- Add ability to change `Rotator` name to whatever you'd like
+- Allow pausing on hover over
+- Prepare for js compressors

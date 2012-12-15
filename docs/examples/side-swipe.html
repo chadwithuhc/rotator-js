@@ -1,10 +1,19 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    <title>Side Swipe Example | Rotator.js</title>
+    <title>Rotator.js | A jQuery rotating banner plugin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="Stylesheet" href="../styles/themes/default.css" />
+		<link rel="Stylesheet" href="../js/highlight/styles/vs.css" />
 		<link rel="Stylesheet" href="../styles/examples.css" />
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
 		<script src="../../rotator.js" type="text/javascript"></script>
+		<script src="../js/highlight/highlight.pack.js" type="text/javascript"></script>
+    <title>Side Swipe Example | Rotator.js</title>
 		<style type="text/css">
 			/* default rotator styles */
 			#example_1 { position: relative; width: 980px; height: 50px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
@@ -45,59 +54,73 @@
 
 		});
 		</script>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 </head>
 <body>
 
-<div id="example">
-	<a href="../toc.htm" id="toc">Table of Contents</a>
+<div id="example" class="container">
 	
-	<h1>Rotator.js: Side Swipe Example</h1>
-	<p>An example to demonstrate horizontal swiping such as a swipe from left to right, or right to left.</p>
-	<p><strong>Useful for:</strong> Blog posts, Simple Image Gallery</p>
+	<header id="top">
+		<h1 class="title">Rotator.js: Side Swipe Example</h1>
+		<p class="description">An example to demonstrate horizontal swiping such as a swipe from left to right, or right to left.</p>
+		<p class="meta"><strong>Useful for:</strong> Blog posts, Simple Image Gallery</p>
+		<a href="../index.html" id="toc-link">Back to Docs</a>
+	</header>
 	
 	<!-- Example 1 -->
 	<h2>Example: Side Swipe with HTML content</h2>
 	<p>This example uses HTML as if it were a blog post. Each HTML block is wrapped in a <code>&lt;div&gt;</code></p>
-	<div id="example_1" class="loading">
-		<div class="slide">
-			<h1 class="post-title">Blog Post #1</h1>
-			<p>This is the content of post #1</p>
+	<section class="example">
+		<small class="caption">Example</small>
+		<div id="example_1" class="loading">
+			<div class="slide">
+				<h1 class="post-title">Blog Post #1</h1>
+				<p>This is the content of post #1</p>
+			</div>
+			<div class="slide">
+				<h1 class="post-title">Blog Post #2</h1>
+				<p>And if you're still reading, post #2</p>
+			</div>
+			<div class="slide">
+				<h1 class="post-title">Blog Post #3</h1>
+				<p>You've made it to post #3</p>
+			</div>
+			<div class="slide">
+				<h1 class="post-title">Blog Post #4</h1>
+				<p>Post #4 is the most interesting! <a href="http://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank">Check it out!</a></p>
+			</div>
 		</div>
-		<div class="slide">
-			<h1 class="post-title">Blog Post #2</h1>
-			<p>And if you're still reading, post #2</p>
-		</div>
-		<div class="slide">
-			<h1 class="post-title">Blog Post #3</h1>
-			<p>You've made it to post #3</p>
-		</div>
-		<div class="slide">
-			<h1 class="post-title">Blog Post #4</h1>
-			<p>Post #4 is the most interesting! <a href="http://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank">Check it out!</a></p>
-		</div>
-	</div>
+	</section>
 
 	<!-- Example 2 -->
 	<h2>Example: Side Swipe with images</h2>
 	<p>This example has only images wrapped in a <code>&lt;ul&gt;</code> with <code>&lt;li&gt;</code>'s</p>
-	<ul id="example_2" class="loading">
-		<li class="slide"><img src="../images/300/1.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/2.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/3.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/4.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/5.jpg" alt="" /></li>
-	</ul>
+	<section class="example">
+		<small class="caption">Example</small>
+		<ul id="example_2" class="loading">
+			<li class="slide"><img src="../images/300/1.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/2.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/3.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/4.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/5.jpg" alt="" /></li>
+		</ul>
+	</section>
 
 	<!-- Example 3 -->
 	<h2>Example: Side Swipe with images and icon nav</h2>
 	<p>This is the same as example 2 except we use an icon nav instead and start random</p>
-	<ul id="example_3" class="loading">
-		<li class="slide"><img src="../images/300/1.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/2.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/3.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/4.jpg" alt="" /></li>
-		<li class="slide"><img src="../images/300/5.jpg" alt="" /></li>
-	</ul>
+	<section class="example">
+		<small class="caption">Example</small>
+		<ul id="example_3" class="loading">
+			<li class="slide"><img src="../images/300/1.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/2.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/3.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/4.jpg" alt="" /></li>
+			<li class="slide"><img src="../images/300/5.jpg" alt="" /></li>
+		</ul>
+	</section>
 
 </div>
 

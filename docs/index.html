@@ -1,10 +1,15 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
     <title>Rotator.js | A jQuery rotating banner plugin</title>
-		<link rel="Stylesheet" href="styles/examples.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="Stylesheet" href="styles/themes/default.css" />
 		<link rel="Stylesheet" href="js/highlight/styles/vs.css" />
-		<script src="../js/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
 		<script src="../js/rotator.js" type="text/javascript"></script>
 		<script src="js/highlight/highlight.pack.js" type="text/javascript"></script>
 		<style type="text/css">
@@ -21,25 +26,29 @@
 			.loading { background: url(../images/ui/loading.gif) 50% 50% no-repeat }
 		</style>
 		<script type="text/javascript">
-		jQuery(function ($) {
+		//jQuery.noConflict();
+		//jQuery(function ($) {
 			//var rotator = $('#rotator').rotator({ /* config */ });
-		});
+		//});
 		</script>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 </head>
 <body>
 
-<div id="wrapper">
+<div id="wrapper" class="container">
 
-	<div id="top">
+	<header id="top">
 		<h1 id="title">Rotator.js</h1>
 		<h2 id="description">A javascript banner rotator built on jQuery with extensive features and expandability.</h2>
 		<a href="#toc" id="toc-link">Table of Contents</a>
-	</div>
+	</header>
 
-	<div id="toc" class="section clearthis">
-		<h1>Table of Contents</h1>
+	<nav id="toc" class="section clearfix">
+		<h1 class="title">Table of Contents</h1>
 
-		<div class="col one clear">
+		<div class="columns four">
 			<h2>Documentation</h2>
 			<ul>
 				<li><a href="#overview">Overview <span class="arrow">&raquo;</span></a></li>
@@ -49,13 +58,13 @@
 				<li><a href="#events">Events <span class="arrow">&raquo;</span></a></li>
 			</ul>
 		</div>
-		<div class="col two">
+		<div class="columns four">
 			<h2>Examples</h2>
 			<ul>
 				<li><a href="#examples">See All Examples <span class="arrow">&raquo;</span></a></li>
 			</ul>
 		</div>
-		<div class="col three">
+		<div class="columns four">
 			<h2>Project Notes</h2>
 			<ul>
 				<li><a href="changelog.md">Changelog <span class="arrow">&raquo;</span></a></li>
@@ -64,33 +73,32 @@
 				<li><a href="#license">License <span class="arrow">&raquo;</span></a></li>
 			</ul>
 		</div>
-		<div class="col four">
+		<div class="columns four">
 			<h2>Contributors</h2>
 			<ul>
 				<li><em>chad d</em> | <a href="http://cmfolio.com/">cmfolio.com</a></li>
 				<li><em>chase w</em> | <a href="http://agroism.com/">agroism.com</a></li>
 			</ul>
 		</div>
-	</div>
+	</nav>
 
-	<div id="overview" class="section">
-		<h1>Overview</h1>
-		<p>Learn what <strong>Rotator.js</strong> is all about and how you can use it.</p>
-		<p></p>
+	<section id="overview" class="section">
+		<h1 class="title">Overview</h1>
+		<p class="description">Learn what <strong>Rotator.js</strong> is all about and how you can use it.</p>
 		
 		<h2>What does it do?</h2>
 		<p><strong>Rotator.js</strong> will take a set of elements on a page and add rotation &mdash; or transitions &mdash; between them.</p>
 
 		<h2>What are some good uses for Rotator.js?</h2>
-		<p><strong>Rotator.js</strong> is perfect for your homepage banner rotator, a simple image gallery with navigation, a news ticker, or anything else that needs a step nav or auto rotation.</p>
+		<p><strong>Rotator.js</strong> is perfect for your homepage banner rotator, a simple image gallery with navigation, a news ticker, or anything else that needs a step navigation or auto rotation.</p>
 	
 		<h2>How hard is it to implement?</h2>
 		<p>There's only a few main steps to take to get your rotator up and running.</p>
-		<p><strong>Include jQuery and the Rotator.js file: </strong></p>
+		<p class="nopad"><strong>Include jQuery and the Rotator.js file: </strong></p>
 		<pre><code class="html">&lt;script src="js/jquery.js" type="text/javascript"&gt;&lt;/script&gt;
 &lt;script src="js/rotator.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
 		
-		<p><strong>Write your rotator HTML: </strong></p>
+		<p class="nopad"><strong>Write your rotator HTML: </strong></p>
 		<pre><code class="html">&lt;ul id="rotator" class="loading"&gt;
 	&lt;li class="slide"&gt;&lt;img /&gt;&lt;/li&gt;
 	&lt;li class="slide"&gt;&lt;img /&gt;&lt;/li&gt;
@@ -98,8 +106,8 @@
 	&lt;li class="slide"&gt;&lt;img /&gt;&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 			
-			<p><strong>Modify rotator styling to your liking: </strong></p>
-			<pre><code class="css">/* default rotator styles */
+		<p class="nopad"><strong>Modify rotator styling to your liking: </strong></p>
+		<pre><code class="css">/* default rotator styles */
 #rotator { position: relative; width: 980px; height: 360px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
 #rotator .slide { width: 980px; height: 360px; position: absolute; top: 0px; left: 0px; overflow: hidden; background: white; display: none; margin: 0px; padding: 0px }
 
@@ -111,12 +119,12 @@
 #rotator-nav a:hover, #rotator-nav .current a { color: #0063B1; border-color: #0063B1 }
 .loading { background: url(../images/ui/loading.gif) 50% 50% no-repeat }</code></pre>
 			
-			<p>
-				<strong>Write the JavaScript to initiate the rotator: </strong>
-				<pre><code class="javascript">jQuery(function ($) {
+		<p class="nopad">
+			<strong>Write the JavaScript to initiate the rotator: </strong>
+			<pre><code class="javascript">jQuery(function ($) {
 	window.rotator = $('#rotator').rotator({ /* config */ });
 });</code></pre>
-			</p>
+		</p>
 
 		<h2>How can I customize the rotator?</h2>
 		<p>Configuring your rotator to exactly how you want is the best part. We've made it so easy, Gary Busey could do it.</p>
@@ -130,26 +138,28 @@
 			<li><a href="#config">See all config options <span class="arrow">&raquo;</span></a></li>
 		</ul>
 
-		<h2>Some Examples</h2>
+		<h2 id="examples">Some Examples</h2>
 		<p>Here is a list of common examples we have put together for you. If you find one you like, take a peak at the source to see how its done.</p>
 		<ul class="list">
-			<li><a href="examples/side-swipe.htm">Side Swipe Example <span class="arrow">&raquo;</span></a></li>
-			<li><a href="examples/">Example <span class="arrow">&raquo;</span></a></li>
-			<li><a href="examples/">Example <span class="arrow">&raquo;</span></a></li>
+			<li><a href="examples/side-swipe.html">Side Swipe Example <span class="arrow">&raquo;</span></a></li>
+			<li><a href="examples/1-banner.html">1 Slide Banner <span class="arrow">&raquo;</span></a></li>
+			<li><a href="examples/multiple-rotators.html">Multiple Rotators <span class="arrow">&raquo;</span></a></li>
 		</ul>	
-	</div>
+	</section>
 
 	<!-- CONFIG -->
-	<div id="config" class="section">
-		<h1>Config</h1>
-		<p>Let's show you how to take full advantage of <strong>Rotator.js</strong> by setting the various config options available to you.</p>
-		<p><strong>Useful for:</strong> Customizing Behavior, Automating More Tasks, Disabling Unwanted Features</p>
+	<section id="config" class="section">
+		<h1 class="title">Config</h1>
+		<p class="description">Let's show you how to take full advantage of <strong>Rotator.js</strong> by setting the various config options available to you.</p>
+		<p class="meta"><strong>Useful for:</strong> Customizing Behavior, Automating More Tasks, Disabling Unwanted Features</p>
 		
 		<h2>Passing In Config Options</h2>
 		<p>First, lets show you how to pass in a config object. Then we'll show you what's available.</p>
 
 		<h3 class="option">Pass In A Config Object</h3>
-		<p><strong>Param</strong> <var>config</var> (obj)</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>config</var> <small>Object</small></dd>
+		</dl>
 		<p>You will start by making a new config object, then pass it in on generation of your rotator.</p>
 		<pre><code class="js">jQuery(function($) {
 	
@@ -161,7 +171,7 @@
 		random: true,
 		transition: 'fade',
 		interval: 10000 // 10 seconds
-	}
+	};
 
 	window.rotator = $('#rotator').rotator(config);
 
@@ -173,44 +183,53 @@
 		<p>Here are all of the config options available to you upon generation of your rotator.</p>
 
 		<h3 class="option">config.first</h3>
-		<p>
-			<strong>Param</strong> <var>first</var> (int)<br />
-			<strong>Default Value</strong> <var>1</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>first</var> <small>Int</small></dd>
+			<dt>Default Value</dt> <dd><var>1</var></dd>
+		</dl>
 		<p>The number of the slide to show first. In case you want to start at slide #3 and go from there.</p>
 
 		<h3 class="option">config.random</h3>
-		<p><strong>Param</strong> <var>random</var> (bool)</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>random</var> <small>Bool</small></dd>
+		</dl>
 		<p>Whether or not to start on a random slide.</p>
-		<p><strong>Note:</strong> This option will override <var>config.first</var>.</p>
+		<p class="note"><strong>Note:</strong> This option will override <var>config.first</var>.</p>
+		
+		
+		<h3 class="option">config.reorderSlides</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>reorderSlides</var> <small>Bool</small></dd>
+		</dl>
+		<p>If you chose to show slides in random order, this will reorder the slide nodes in the DOM so they match the shuffled order.</p>
 
 		<h3 class="option">config.transition</h3>
-		<p>
-			<strong>Param</strong> <var>transition</var> (string)<br />
-			<strong>Default Value</strong> <var>'fade'</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>transition</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'fade'</var></dd>
+		</dl>
 		<p>Choose which transition to use between slides. You can <a href="#transitions">add your own transition</a> if you'd like.</p>
 
 		<h3 class="option">config.transitionDuration</h3>
-		<p>
-			<strong>Param</strong> <var>transitionDuration</var> (int) (in milliseconds)<br />
-			<strong>Default Value</strong> <var>1000</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>transitionDuration</var> <small>Int</small> (in milliseconds)</dd>
+			<dt>Default Value</dt> <dd><var>1000</var></dd>
+		</dl>
 		<p>The duration of the transition in milliseconds. 1000 == 1 second.</p>
 
 		<h3 class="option">config.transitions</h3>
-		<p>
-			<strong>Param</strong> <var>transitions</var> (obj)<br />
-			<strong>Default Value</strong> <var>{ }</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>transitions</var> <small>Object</small></dd>
+			<dt>Default Value</dt> <dd><var>{ }</var></dd>
+		</dl>
 		<p>If you want to add transitions upon creation of the rotator you can pass them in here. Your transitions obj should look like the code below. Learn how to create your own transition on the <a href="#transitions">transitions</a> page.</p>
 		<pre><code class="js">var transitions_obj = {
-	explode: function(from, to) {
+	explode: function(from, to, config) {
 		from.blowUp(config.transitionDuration);
 		to.fadeIn(config.transitionDuration);
 	},
 	// will override current fade
-	fade: function(from, to) {
+	fade: function(from, to, config) {
 		from.fadeOut('superDuperSlow');
 		to.fadeIn('fast');
 	}
@@ -222,103 +241,140 @@ jQuery(function($) {
 });</code></pre>
 
 		<h3 class="option">config.interval</h3>
-		<p>
-			<strong>Param</strong> <var>inverval</var> (int) (in milliseconds)<br />
-			<strong>Default Value</strong> <var>7000</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>inverval</var> <small>Int</small> (in milliseconds)</dd>
+			<dt>Default Value</dt> <dd><var>7000</var></dd>
+		</dl>
 		<p>The number of milliseconds between changing slides. 7000 == 7 seconds.</p>
 
 		<h3 class="option">config.slideClass</h3>
-		<p>
-			<strong>Param</strong> <var>slideClass</var> (string)<br />
-			<strong>Default Value</strong> <var>'.slide'</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>slideClass</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'.slide'</var></dd>
+		</dl>
 		<p>The class used on each slide. This should <strong>not</strong> be an #id. Be sure to include the preceding dot (<code>.</code>)</p>
 
-		<h3 class="option">config.slidesNumClass</h3>
-		<p>
-			<strong>Param</strong> <var>slidesNumClass</var> (string)<br />
-			<strong>Default Value</strong> <var>'.slide-#'</var>
-		</p>
+		<h3 class="option">config.slideNumClass</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>slideNumClass</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'.slide-#'</var></dd>
+		</dl>
 		<p>The class added to each slide. The class is to tell what number the slide is. Use of <code>#</code> in the class name will be replaced with the slide number.</p>
 
 		<h3 class="option">config.slideIdAttr</h3>
-		<p>
-			<strong>Param</strong> <var>slideIdAttr</var> (string)<br />
-			<strong>Default Value</strong> <var>'slide_id'</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>slideIdAttr</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'slide_id'</var></dd>
+		</dl>
 		<p>This attribute will be added to each slide to help determine the correct slide number. You shouldn't need to change this unless you're strict on your HTML standards.</p>
 
 		<h3 class="option">config.slideNameAttr</h3>
-		<p>
-			<strong>Param</strong> <var>slideNameAttr</var> (string)<br />
-			<strong>Default Value</strong> <var>'slide_name'</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>slideNameAttr</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'slide_name'</var></dd>
+		</dl>
 		<p>This attribute is available for people who want to give a slide a unique name. This name will show up in the <var>data</var> object. It is useful to set this so you can add click tracking with a unique name for the slide.</p>
+		
+		<h3 class="option">config.width</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>width</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>980</var></dd>
+		</dl>
+		<p>This informs the rotator of it's width so it does not need to check using jQuery or other methods. In some cases (with certain transitions) this is an important setting.</p>
+		
+		<h3 class="option">config.height</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>height</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>360</var></dd>
+		</dl>
+		<p>This informs the rotator of it's height so it does not need to check using jQuery or other methods. In some cases (with certain transitions) this is an important setting.</p>
 
 		<h3 class="option">config.nav</h3>
-		<p>
-			<strong>Param</strong> <var>nav</var> (obj)<br />
-			<strong>Default Value</strong> <var>{ prev: true, next: true, start: false, stop: false, numbers: true, icons: false, position: 'after' }</var>
-		</p>
-		<p>This is where you will set most your settings for your nav. There are config options inside this config option so be careful. Below is a short summary of acceptable values for each item. For a full demontstration on how to generate a nav, see the <a href="#navigation">navigation</a> page.</p>
-		<pre><code class="js">config.nav = {
+		<dl class="params">
+			<dt>Param</dt> <dd><var>nav</var> <small>Object</small></dd>
+			<dt>Default Value</dt> <dd><var class="pre">{
+  prev: true,
+  next: true,
+  start: false,
+  stop: false,
+  numbers: true,
+  icons: false,
+  position: 'after'
+}</var></dd>
+		</dl>
+		<p>This is where you will set most your settings for your nav. There are config options inside this config option so be careful. Below is a short summary of acceptable values for each item. For a full demontstration on how to generate a nav, see the <a href="#navigation">navigation</a> section.</p>
+		<pre><code class="javascript">config.nav = {
 	prev: bool, // default: true
 	next: bool, // default: true
 	start: bool, // default: false
 	stop: bool, // default: false
 	numbers: bool, // default: true
 	icons: bool, // default: false
-	position: [before|after] // default: 'after'
+	position: [before|inside|after] // default: 'after'
 }</code></pre>
 	
 		<h3 class="option">config.currentNavClass</h3>
-		<p>
-			<strong>Param</strong> <var>currentNavClass</var> (string)<br />
-			<strong>Default Value</strong> <var>'.current'</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>currentNavClass</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'.current'</var></dd>
+		</dl>
 		<p>The class used for the current step we are on in the nav. For example, when we switch to slide #3, we will add this class to the step #3 nav item. Cannot be an #id. Be sure to include the preceding dot (<code>.</code>)</p>
 
 		<h3 class="option">config.stopOnClick</h3>
-		<p>
-			<strong>Param</strong> <var>stopOnClick</var> (bool)<br />
-			<strong>Default Value</strong> <var>true</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>stopOnClick</var> <small>Bool</small></dd>
+			<dt>Default Value</dt> <dd><var>true</var></dd>
+		</dl>
 		<p>Do you want to stop auto-rotation once someone clicks on a nav link?</p>
 
 		<h3 class="option">config.loadingClassName</h3>
-		<p>
-			<strong>Param</strong> <var>loadingClassName</var> (string)<br />
-			<strong>Default Value</strong> <var>'loading'</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>loadingClassName</var> <small>String</small></dd>
+			<dt>Default Value</dt> <dd><var>'loading'</var></dd>
+		</dl>
 		<p>We start the rotator off with a loading class so you can add a loading image for users to see before we show the first slide. We remove this class when the first slide loads. Cannot be an #id. Be sure to <strong>leave out</strong> the preceding dot (<code>.</code>) on this one.</p>
 
 		<h3 class="option">config.autostart</h3>
-		<p>
-			<strong>Param</strong> <var>autostart</var> (bool)<br />
-			<strong>Default Value</strong> <var>true</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>autostart</var> <small>Bool</small></dd>
+			<dt>Default Value</dt> <dd><var>true</var></dd>
+		</dl>
 		<p>Whether or not to start auto-rotating when the rotator is initially loaded.</p>
+		
+		<h3 class="option">config.quickLoad</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>quickLoad</var> <small>Bool</small></dd>
+			<dt>Default Value</dt> <dd><var>false</var></dd>
+		</dl>
+		<p>If <var>quickLoad</var> is enabled, the rotator will run the start process instantly instead of waiting for slides or window to load.</p>
 
 		<h3 class="option">config.zIndex</h3>
-		<p>
-			<strong>Param</strong> <var>zIndex</var> (int)<br />
-			<strong>Default Value</strong> <var>10</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>zIndex</var> <small>Int</small></dd>
+			<dt>Default Value</dt> <dd><var>10</var></dd>
+		</dl>
 		<p>The CSS <code>z-index</code> number to start the slides off at. This will automatically increase by 2 when transitioning slides. This way you can +/- 1 during transitioning for greater control over your effect.</p>
 
 		<h3 class="option">config.ieFadeFix</h3>
-		<p>
-			<strong>Param</strong> <var>ieFadeFix</var> (bool)<br />
-			<strong>Default Value</strong> <var>true</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>ieFadeFix</var> <small>Bool</small></dd>
+			<dt>Default Value</dt> <dd><var>true</var></dd>
+		</dl>
 		<p>Includes a bug fix for IE where pur blacks in the made are shown invisible.</p>
 
 		<h3 class="option">config.events</h3>
-		<p>
-			<strong>Param</strong> <var>events</var> (obj)<br />
-			<strong>Default Value</strong> <var>{ onLoad: function (data) { }, onFirstStart: function(data) { }, onStart: function (data) { }, onStop: function (data) { }, onChange: function (data) { }, onClick: function (data) { }, onNavClick: function (data) { } }</var>
-		</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>events</var> <small>Object</small></dd>
+			<dt>Default Value</dt> <dd><var class="pre">{
+  onLoad: function (data) { },
+  onFirstStart: function(data) { },
+  onStart: function (data) { },
+  onStop: function (data) { },
+  onChange: function (data) { },
+  onClick: function (data) { },
+  onNavClick: function (data) { }
+}</var></dd>
+		</dl>
 		<p>An object of event callbacks that are available to you. By default, the events do nothing even though they are called. You can learn more about adding events on the <a href="#events">events</a> page. Here is a list of available events:</p>
 	<pre><code class="js">config.events = {
 	onLoad: function (data) { },
@@ -329,14 +385,18 @@ jQuery(function($) {
 	onClick: function (data) { },
 	onNavClick: function (data) { }
 }</code></pre>
-	</div>
+
+		
+		<h2>Retrieving Config Options</h2>
+		<p>If you are going to custom build something like a gallery, you may need to access the config options in your Events, Transitions, etc. To allow you access to the config object, we have added a reference to it at <var>base.config</var>. Please be aware anything you change in here will change globally on this specific instance of the rotator. If you go and change the <var>config.slideIdAttr</var> without realizing it, your rotator may break.</p>
+	</section>
 
 
 	<!-- TRANSITIONS -->
-	<div id="transitions" class="section">
-		<h1>Transitions</h1>
-		<p>Find out the different transitions available to you and how to create your own.</p>
-		<p><strong>Useful for:</strong> Modifying Behaviour, Customizing Transitions, Controlling Slides</p>
+	<section id="transitions" class="section">
+		<h1 class="title">Transitions</h1>
+		<p class="description">Find out the different transitions available to you and how to create your own.</p>
+		<p class="meta"><strong>Useful for:</strong> Modifying Behaviour, Customizing Transitions, Controlling Slides</p>
 
 
 		<h2>Included Transitions</h2>
@@ -344,6 +404,7 @@ jQuery(function($) {
 		<ul class="list">
 			<li><var>fade</var> &mdash; A simple fade between slides</li>
 			<li><var>swipe</var> &mdash; A horizontal swipe from left to right or right to left, depending on whether you're going forward or backwards between slides</li>
+			<li><var>push</var> &mdash; A horizontal "push" from left to right or right to left, depending on whether you're going forward or backwards between slides</li>
 		</ul>
 
 
@@ -353,26 +414,27 @@ jQuery(function($) {
 
 		<h3 class="option">Anatomy Of A Transition Function</h3>
 		<p>Here is a sample of what the <var>fade</var> function would look like:</p>
-		<pre><code class="js">$this.transitions.fade = function (from, to) {
+		<pre><code class="js">base.transitions.fade = function (from, to, config) {
 	from.fadeOut(config.transitionDuration);
 	to.fadeIn(config.transitionDuration);
 }</code></pre>
-		<p>
-			<strong>Param</strong> <var>from</var> (jQuery obj)<br />
-			<strong>Param</strong> <var>to</var> (jQuery obj)
-		</p>
-		<p>In every transition function you have two parameters: <var>from</var> and <var>to</var>. These are the jQuery objects of the slides we are transitioning to and from. With these two objects you should be able to completely control any effect you want to make between them.</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>from</var> <small>Object (jQuery)</small></dd>
+			<dt>Param</dt> <dd><var>to</var> <small>Object (jQuery)</small></dd>
+			<dt>Param</dt> <dd><var>config</var> <small>Object</small></dd>
+		</dl>
+		<p>In every transition function you have three parameters: <var>from</var>, <var>to</var>, and <var>config</var>. The first two are the jQuery objects of the slides we are transitioning to and from. The config object holds all the configuration options attached to the rotator. With the combination of the two jQuery objects and the config object, you should be able to completely control any effect you want to make between slides.</p>
 
 		<h3 class="option">Adding A Transition To Your Rotator</h3>
 		<p>Ok, so now you know how to make a transition function, here is how you add it to your rotator.</p>
 		<pre><code class="js">// adding it on creation of rotator
 var transitions_obj = {
-	explode: function(from, to) {
+	explode: function(from, to, config) {
 		from.blowUp(config.transitionDuration);
 		to.fadeIn(config.transitionDuration);
 	},
 	// will override current fade
-	fade: function(from, to) {
+	fade: function(from, to, config) {
 		from.fadeOut('superDuperSlow');
 		to.fadeIn('fast');
 	}
@@ -384,7 +446,7 @@ jQuery(function($) {
 });
 
 // adding it after creation
-rotator.transitions.zoom = function(from, to) {
+rotator.transitions.zoom = function(from, to, config) {
 	from.animate({ width: '200%', height: '200%' });
 	to.css({ width: '50%', height: '50%' }).animate({ width: '100%', height: '100%' });
 }</code></pre>
@@ -396,70 +458,80 @@ rotator.transitions.zoom = function(from, to) {
 
 
 		<h3 class="option">id</h3>
-		<p><strong>Param</strong> <var>id</var> (int)</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>id</var> <small>Int</small></dd>
+		</dl>
 		<p>This is the id &mdash; a.k.a. slide number &mdash; of the slide.</p>
 
 		<h3 class="option">name</h3>
-		<p><strong>Param</strong> <var>name</var> (string)</p>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>name</var> <small>String</small></dd>
+		</dl>
 		<p>This is the unique name of the slide. The unique name is pulled from the attribute you set in <code>config.slideNameAttr</code>.</p>
 
-		<h3 class="option">transitionDuration</h3>
-		<p><strong>Param</strong> <var>transitionDuration</var> (int) (in milliseconds)</p>
-		<p>The transition duration you set in your config at <code>config.slideNameAttr</code>. 1000 = 1 second.</p>
-
-		<h3 class="option">zIndex</h3>
-		<p><strong>Param</strong> <var>zIndex</var> (int)</p>
-		<p>The current CSS <code>z-index</code> number from <code>config.zIndex</code>. This gets increased by 2 automatically on each slide transition so you can have better control over your transitions.</p>
-
-	</div>
+	</section>
 
 
 	<!-- NAVIGATION -->
-	<div id="navigation" class="section">
-		<h1>Navigation</h1>
-		<p>Learn how to custom build your navigation</p>
-		<p><strong>Useful for:</strong> Full Navigation Customization, Modifying Behaviour, Themeing</p>
+	<section id="navigation" class="section">
+		<h1 class="title">Navigation</h1>
+		<p class="description">Learn how to custom build your navigation</p>
+		<p class="meta"><strong>Useful for:</strong> Full Navigation Customization, Modifying Behaviour, Themeing</p>
 
 		<h2>In Development</h2>
-	</div>
+	</section>
 
 
 	<!-- EVENTS -->
-	<div id="events" class="section">
-		<h1>Events</h1>
-		<p>This will show you the events currently available and how you can act on them.</p>
-		<p><strong>Useful for:</strong> Click Tracking, Engagement Tracking, Manipulating Default Behavoir</p>
+	<section id="events" class="section">
+		<h1 class="title">Events</h1>
+		<p class="description">This will show you the events currently available and how you can act on them.</p>
+		<p class="meta"><strong>Useful for:</strong> Click Tracking, Engagement Tracking, Manipulating Default Behavior</p>
 
 
 		<h2>Available Events</h2>
 		<p>We've included some basic events that most users would need access to. If you feel you need more, go into the core and feel free to add some of your own triggers.</p>
 
-		<h3 class="option">onLoad: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onLoad(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs when the rotator first fades in on the page.</p>
 
-		<h3 class="option">onFirstStart: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onFirstStart(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs when the rotator starts auto-rotation for the <strong>first</strong> time only.</p>
 
-		<h3 class="option">onStart: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onStart(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs when the rotator starts auto-rotation. Will run on <strong>every</strong> start of the auto-rotation, not just the first start.</p>
 
-		<h3 class="option">onStop: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onStop(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs when the rotator stops the auto-rotation. Will run on <strong>every</strong> stop of the auto-rotation, not just the first stop.</p>
 
-		<h3 class="option">onChange: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onChange(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs on the change of every slide.</p>
 
-		<h3 class="option">onClick: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onClick(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs when any <code>&lt;a&gt;</code> is clicked inside of a slide. In addition to normal <var>data</var> passed into this function, you get <var>event</var> data as well. You can access it via <code>data.event</code>.</p>
 
-		<h3 class="option">onNavClick: function (<var>data</var>) {}</h3>
-		<p><strong>Param</strong> <var>data</var> (obj)</p>
+		<h3 class="option">onNavClick(<var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>Runs when any <code>&lt;a&gt;</code> is clicked inside of the rotator nav. In addition to normal <var>data</var> passed into this function, you get <var>event</var> data as well. You can access it via <code>data.event</code>. You will also get <var>navClicked</var> which is information about the slide the nav is navigating to. Here is the form of <var>navClicked</var>:</p>
 		<pre><code class="js">data.navClicked = {
 	id: int, // slide id
@@ -473,12 +545,14 @@ rotator.transitions.zoom = function(from, to) {
 		<p>Here is how you get and interact with the <var>data</var> object.</p>
 
 		<h3 class="option">disecting <var>data</var></h3>
-		<p><var>data</var> (obj)</p>
+		<dl class="params">
+			<dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>You need to understand what information is in <var>data</var> to make good use of it. Here is what event information we give you with <var>data</var>.</p>
 		<pre><code class="js">var data = {
 
 	// rotator object
-	rotator: $this,
+	rotator: base,
 
 	// slides information
 	slides: {
@@ -514,25 +588,32 @@ rotator.transitions.zoom = function(from, to) {
 
 }</code></pre>
 	
-		<h3 class="option">$this.getEventData()</h3>
-		<p><strong>Returns</strong> <var>data</var> (obj)</p>
+		<h3 class="option">base.getEventData()</h3>
+		<dl class="params">
+			<dt>Returns</dt> <dd><var>data</var> <small>Object</small></dd>
+		</dl>
 		<p>This will return the same <var>data</var> object as described above. You may use this function at any time.</p>
 
-		<h3 class="option">$this.isRunning()</h3>
-		<p><strong>Returns</strong> <var>bool</var> (bool)</p>
+		<h3 class="option">base.isRunning()</h3>
+		<dl class="params">
+			<dt>Returns</dt> <dd><var>bool</var> <small>Bool</small></dd>
+		</dl>
 		<p>Find out if the rotator is currently auto-rotating or not. You may use this function at any time.</p>
 
 
-		<h3 class="option">$this.runEvent(<var>name</var>, <var>data</var>)</h3>
-		<p><strong>Param</strong> <var>name</var> (string)<br />
-			<strong>Param</strong> <var>data</var> (obj) <em>optional</em><br />
-			<strong>Returns</strong> <var>$this</var> (Rotator obj)
-		</p>
+		<h3 class="option">base.runEvent(<var>name</var>, <var>data</var>)</h3>
+		<dl class="params">
+			<dt>Param</dt> <dd><var>name</var> <small>String</small></dd>
+			<dt>Param</dt> <dd><var>data</var> <small>Object</small> <em>optional</em></dd>
+			<dt>Returns</dt> <dd><var>base</var> <small>Object (Rotator)</small></dd>
+		</dl>
 		<p>This function is available to you in case you want to run an event at any specific time. You can add more events to the <var>config</var> upon generating of your rotator.</p>
 		<p>The second parameter allows you to pass in additional data if you want to extend the original <var>data</var> informaton.</p>
 
-		<h3 class="option">$this.current()</h3>
-		<p><strong>Returns</strong> <var>slide_id</var> (int)</p>
+		<h3 class="option">base.current()</h3>
+		<dl class="params">
+			<dt>Returns</dt> <dd><var>slide_id</var> <small>Int</small></dd>
+		</dl>
 		<p>This function will return the <var>slide_id</var> of the current slide we are viewing.</p>
 
 
@@ -566,32 +647,28 @@ jQuery(function($) {
 	});
 
 });</code></pre>
-		<p><strong>Note:</strong> Calling an event that doesn't exist will simply not run that event.</p>
-		<!--
-		<h3 class="option">Extending Event Data</h3>
-		<p>...</p>
-		-->
-	</div>
+		<p class="note"><strong>Note:</strong> Calling an event that doesn't exist will simply not run that event.</p>
+	</section>
 
 
 	<!-- SUPPORT -->
-	<div id="support" class="section">
-		<h1>Support</h1>
-		<p>eh. not so much.</p>
+	<section id="support" class="section">
+		<h1 class="title">Support</h1>
+		<p class="description">eh. not so much.</p>
 
 		<h2>Sorry</h2>
 		<p>Unfortunately, we do not offer any support at the moment. <strong>Rotator.js</strong> is made for ease of customization for your smarter-than-average jQuery developer.</p>
-	</div>
+	</section>
 
 
 	<!-- LICENSE -->
-	<div id="license" class="section">
-		<h1>License</h1>
-		<p>What you can and can't do with this script</p>
+	<section id="license" class="section">
+		<h1 class="title">License</h1>
+		<p class="description">What you can and can't do with this script</p>
 
 		<h2>Released under MIT License</h2>
 		<p>We have released our project under the MIT License which is stated as:</p>
-		<pre><code class="no-highlight">Copyright &copy; 2011 by cmfolio & agroism
+		<pre><code class="no-highlight">Copyright &copy; 2010-2012 by cmfolio & agroism
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -610,11 +687,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</code></pre>
-	</div>
+	</section>
 
-	<div id="footer">
-		<p>Copyright &copy; 2011 <a href="#license">MIT License</a> by <a href="http://cmfolio.com">cmfolio</a> & <a href="http://agroism.com">agroism.com</a>.</p>
-	</div>
+	<footer id="footer">
+		<p>Copyright &copy; 2010-2012 <a href="#license">MIT License</a> by <a href="http://cmfolio.com">cmfolio</a> & <a href="http://agroism.com">agroism.com</a>.</p>
+	</footer>
 
 </div>
 

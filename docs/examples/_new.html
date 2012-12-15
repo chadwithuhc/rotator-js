@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+    <title>Side Swipe HTML Example | Rotator.js</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="Stylesheet" href="../styles/themes/default.css" />
+		<link rel="Stylesheet" href="../js/highlight/styles/vs.css" />
+		<link rel="Stylesheet" href="../styles/examples.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+		<script src="../../rotator.js" type="text/javascript"></script>
+		<script src="../js/highlight/highlight.pack.js" type="text/javascript"></script>
+		<style type="text/css">
+			/* default rotator styles */
+			#rotator { position: relative; width: 980px; height: 360px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
+			#rotator .slide { width: 980px; height: 360px; position: absolute; top: 0px; left: 0px; overflow: hidden; background: white; display: none; margin: 0px; padding: 0px }
+
+			/* default rotator nav styles */
+			#rotator-nav { display: block; position: absolute; bottom: 10px; right: 10px; z-index: 5000; background: white; opacity: .5; filter: alpha(opacity=40); padding: 4px; -moz-border-radius: 4px }
+			#rotator-nav:hover { opacity: 1; filter: alpha(opacity=100) }
+			#rotator-nav li { display: block; float: left; padding: 0px 2px }
+			#rotator-nav a { border: solid 1px #aaa; color: #aaa; font: normal 12px Arial; padding: 2px 3px; text-decoration: none; -moz-border-radius: 2px; outline: none }
+			#rotator-nav a:hover, #rotator-nav .current a { color: #0063B1; border-color: #0063B1 }
+			.loading { background: url(../images/ui/loading.gif) 50% 50% no-repeat }
+		</style>
+		<script type="text/javascript">
+		jQuery(function ($) {
+			var rotator = $('#rotator').rotator({  });
+		});
+		</script>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+</head>
+<body>
+
+<div id="example" class="container">
+
+	<header id="top">
+		<h1 class="title">Rotator.js: Example Name</h1>
+		<p class="description">Description</p>
+		<p class="meta"><strong>Useful for:</strong> Comma, Separated</p>
+		<a href="../" id="toc-link">Back to Docs</a>
+	</header>
+	
+	<!-- Example 1 -->
+	<h2>Example: Name</h2>
+	<p>Description</p>
+	<section class="example">
+		<small class="caption">Example</small>
+		<div id="rotator" class="loading">
+			<div class="slide"></div>
+			<div class="slide"></div>
+			<div class="slide"></div>
+			<div class="slide"></div>
+		</div>
+	</section>
+
+	<!-- Example 2 -->
+	<h2>Example: Name</h2>
+	<p>Description</p>
+	<section class="example">
+		<small class="caption">Example</small>
+		<div id="rotator" class="loading">
+			<div class="slide"></div>
+			<div class="slide"></div>
+			<div class="slide"></div>
+			<div class="slide"></div>
+		</div>
+	</section>
+
+</div>
+
+</body>
+</html>

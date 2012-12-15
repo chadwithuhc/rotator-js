@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Side Swipe Example | Rotator.js</title>
+		<link rel="Stylesheet" href="../styles/examples.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
+		<script src="../../rotator.js" type="text/javascript"></script>
+		<style type="text/css">
+			/* default rotator styles */
+			#example_1 { position: relative; width: 980px; height: 50px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
+			#example_1 .slide { width: 980px; height: 360px; position: absolute; top: 0px; left: 0px; overflow: hidden; background: #eee; display: none; margin: 0px; padding: 0px }
+			#example_1-nav { position: static }
+			#example .rotator2 { position: relative; width: 300px; height: 300px; overflow: hidden; background-color: white; margin: 0px; padding: 0px }
+			#example .rotator2 .slide { width: 300px; height: 300px; position: absolute; top: 0px; left: 0px; overflow: hidden; background: white; display: none; margin: 0px; padding: 0px }
+			#example .rotator2-nav { position: static }
+
+			/* default rotator nav styles */
+			.rotator-nav { display: block; position: absolute; bottom: 10px; right: 10px; z-index: 5000; background: white; opacity: .5; filter: alpha(opacity=40); padding: 4px; -moz-border-radius: 4px }
+			.rotator-nav:hover { opacity: 1; filter: alpha(opacity=100) }
+			.rotator-nav li { display: block; float: left; padding: 0px 2px }
+			.rotator-nav a { border: solid 1px #aaa; color: #aaa; font: normal 12px Arial; padding: 2px 3px; text-decoration: none; -moz-border-radius: 2px; outline: none }
+			.rotator-nav a:hover, .rotator-nav .current a { color: #0063B1; border-color: #0063B1 }
+			.loading { background: url(../images/ui/loading.gif) 50% 50% no-repeat }
+
+			#rotator-nav .icon a { text-indent: -200px; overflow: hidden; width: 10px }
+		</style>
+		<script type="text/javascript">
+		jQuery(function ($) {
+			window.example = $('.rotator').rotator({ autostart: true, nav: { next: true, numbers: true, prev: true} });
+		});
+		</script>
+</head>
+<body>
+
+<div id="example">
+	<a href="../index.html" id="toc">Table of Contents</a>
+	
+	<h1>Rotator.js: Multiple Rotators</h1>
+	<p>An example to demonstrate multiple rotators on one page with and without separate <code>id</code>'s.</p>
+	<p><strong>Useful for:</strong> Ad Spots, Multiple Galleries</p>
+	
+	<!-- Example 1 -->
+	<h2>Example: Fading with HTML content</h2>
+	<p>This example uses HTML as if it were a blog post. Each HTML block is wrapped in a <code>&lt;div&gt;</code></p>
+	<div id="example_1" class="rotator loading">
+		<div class="slide">
+			<h1 class="post-title">Blog Post #1</h1>
+			<p>This is the content of post #1</p>
+		</div>
+		<div class="slide">
+			<h1 class="post-title">Blog Post #2</h1>
+			<p>And if you're still reading, post #2</p>
+		</div>
+		<div class="slide">
+			<h1 class="post-title">Blog Post #3</h1>
+			<p>You've made it to post #3</p>
+		</div>
+		<div class="slide">
+			<h1 class="post-title">Blog Post #4</h1>
+			<p>Post #4 is the most interesting! <a href="http://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank">Check it out!</a></p>
+		</div>
+	</div>
+
+	<!-- Example 2 -->
+	<h2>Example: Side Swipe with images</h2>
+	<p>This example has only images wrapped in a <code>&lt;ul&gt;</code> with <code>&lt;li&gt;</code>'s</p>
+	<ul class="rotator rotator2 loading">
+		<li class="slide 1"><img src="../images/300/1.jpg" alt="" /></li>
+		<li class="slide 2"><img src="../images/300/2.jpg" alt="" /></li>
+		<li class="slide 3"><img src="../images/300/3.jpg" alt="" /></li>
+		<li class="slide 4"><img src="../images/300/4.jpg" alt="" /></li>
+		<li class="slide 5"><img src="../images/300/5.jpg" alt="" /></li>
+	</ul>
+
+</div>
+
+</body>
+</html>
