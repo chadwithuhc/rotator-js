@@ -19,3 +19,4 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 - Add ability to change `Rotator` name to whatever you'd like
 - Allow pausing on hover over
 - Prepare for js compressors
+- Include `css` file with default styles for various setups

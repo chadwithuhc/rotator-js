@@ -5,7 +5,7 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 
 ## Changelog  
 
-### v0.9.8 / 5.21.2012
+### v0.9.8 / 1.23.2013
 - __Important__ Changed `config.slidesClass` to `config.slideClass`
 - __Important__ Changed `config.slidesNumClass` to `config.slideNumClass`
 - Added new transition `push` which pushes the slide to the left or right based on change direction
@@ -14,9 +14,9 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 - __Important__ Removed `to.transitionDuration && to.zIndex` since they can now be accessed on `config.x`
 - Added `base.version` in case you need to check for specific version
 - Added `base.id` which is the id of the element passed in. This will be used to identify this instance.
-- Added the full rotator object to it's DOM element. Retrieve with `element.data('rotator')`.
+- Added the full Rotator object to it's DOM element. Retrieve with `element.data('rotator')`.
 - Changed `onChange` event call to run immediately instead of waiting til slide duration finishes
-- Bug Fix: Silently fail when transition is undefined
+- Bug Fix: Silently fail when transition is undefined or not a function
 - Bug Fix: `base.ieFadeFix(false)` would return true
 
 ### v0.9.7 / 11.18.2011

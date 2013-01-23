@@ -1,7 +1,18 @@
-﻿(function ($) {
+﻿/*!
+* Rotator
+* A javascript banner rotator built on jQuery with extensive features and expandability.
+*
+* @author  cmfolio & agroism.com
+* @docs  http://web.cmfolio.com/projects/rotator/
+* @source  https://github.com/chadwithuhc/rotator-js
+* @copyright  MIT License
+* @version  v0.9.8 R05.21.12
+*/
+(function ($) {
 
-	/* Rotator v0.9.7 R11.18.2011 */
 	$.Rotator = function (element, options) {
+
+		this.version = '0.9.8 R05.21.12';
 
 		var defaults = {
 			first: 1, // which slide num to start at
@@ -11,8 +22,8 @@
 			transitionDuration: 1000, // effect speed in milliseconds
 			transitions: {}, // pass in additional transitions at generation
 			interval: 7000, // interval between slides in milliseconds
-			slidesClass: '.slide', // the slide class
-			slidesNumClass: '.slide-#', // generates slide numbers, use # for the number placeholder
+			slideClass: '.slide', // the slide class
+			slideNumClass: '.slide-#', // generates slide numbers, use # for the number placeholder
 			slideIdAttr: 'data-slide-id', // the attribute for the slide id, e.g. data-slide-id="3"
 			slideNameAttr: 'data-slide-name', // the attribute for the slide name (a unique text string), e.g. data-slide-name="SaleHalfOff"
 			width: 980, // width of container
@@ -24,7 +35,7 @@
 				stop: false,
 				numbers: true,
 				icons: false,
-				position: 'after' // [before|after]
+				position: 'after' // [before|inside|after]
 			},
 			currentNavClass: '.current', // the class of the selected nav item
 			stopOnClick: true, // stop rotating on nav click
@@ -44,7 +55,7 @@
 				onNavClick: function (data) { }
 			},
 			debug: false
-		}
+		};
 
 		// the rotators config based on passed in options
 		var config = $.extend({}, defaults, options || {});
@@ -53,6 +64,7 @@
 		var base = this;
 
 		// jQuery object vars available
+		base.config = config;
 		base.element;
 		base.slides;
 		base.nav;
@@ -67,10 +79,10 @@
 		var init = function () {
 			// get the rotator element
 			base.element = $(element).eq(0);
-			base.element.id = base.element[0].id || base.element.attr({ id: (Date.now() + 1).toString(36) })[0].id;
+			base.id = base.element[0].id || base.element.attr({ id: (Date.now() + 1).toString(36) })[0].id;
 
 			// get the slides
-			base.slides = base.element.find(config.slidesClass);
+			base.slides = base.element.find(config.slideClass);
 
 			// if starting random, generate a num
 			if (config.random == true) {
@@ -82,7 +94,7 @@
 				tmpSlides = [];
 			base.slides.each(function () {
 				if (i > base.slides.length) { i = 1; }
-				tmpSlides[i - 1] = $(this).attr(config.slideIdAttr, i).addClass(config.slidesNumClass.replace(/\#/, i).replace(/\./, ''))[0];
+				tmpSlides[i - 1] = $(this).attr(config.slideIdAttr, i).addClass(config.slideNumClass.replace(/\#/, i).replace(/\./, ''))[0];
 				i++;
 			});
 
@@ -102,12 +114,15 @@
 			});
 
 			// copy any transitions that are added
-			$.extend(base.transitions, config.transitions);
+			config.transitions = $.extend(base.transitions, config.transitions);
 
 			// add the nav
 			if (!!config.nav && base.slides.length > 1) {
 				buildNav();
 			}
+
+			// attach the Rotator to its element
+			base.element.data('rotator', base);
 
 			// init event
 			base.runEvent('onInit');
@@ -116,7 +131,7 @@
 			var loadFn = function () {
 				config.rotatorLoaded = true;
 				base.element.removeClass(config.loadingClassName);
-				
+
 				config.events.onLoadDefault = function() {
 					current.fadeIn(500);
 
@@ -156,7 +171,7 @@
 				else {
 					loadFn();
 				}
-				
+
 				// otherwise if we still haven't started by the time the window loads, then just start
 				$(window).load(function () {
 					if (config.rotatorLoaded != true) {
@@ -166,31 +181,31 @@
 			}
 
 			return base;
-		} // end init
+		}; // end init
 
 		// start the rotation
 		base.start = function () {
 			base.runEvent('onStart');
 			startInterval();
 			return base;
-		}
+		};
 
 		// stops the rotation
 		base.stop = function () {
 			base.runEvent('onStop');
 			stopInterval();
 			return base;
-		}
+		};
 
 		// switches to the next slide
 		base.next = function () {
 			return base.goTo(base.current() + 1);
-		}
+		};
 
 		// switches to prev slide
 		base.prev = function () {
 			return base.goTo(base.current() - 1);
-		}
+		};
 
 		// gets the id of the current shown slide
 		base.current = function () {
@@ -199,11 +214,11 @@
 				return -1;
 			}
 			return parseInt(current.attr(config.slideIdAttr));
-		}
+		};
 
 		// go to a specific slide num
 		base.goTo = function (id) {
-			if (typeof id == 'undefined' || base.slides.filter(':animated').length > 0) {
+			if (typeof id == 'undefined' || typeof base.transitions[config.transition] !== 'function' || base.slides.filter(':animated').length > 0) {
 				return base;
 			}
 
@@ -219,14 +234,13 @@
 			config.zIndex = (config.zIndex !== 'auto' && typeof parseInt(config.zIndex) == 'number') ? parseInt(config.zIndex) + 2 : config.zIndex;
 
 			// add some additional data to the slides
-			var settings = { transitionDuration: config.transitionDuration, zIndex: config.zIndex }
 			var from_slide = base.slides.eq(fixId(from, true));
-			$.extend(from_slide, { id: from_slide.attr(config.slideIdAttr), name: from_slide.attr(config.slideIdAttr) }, settings);
+			$.extend(from_slide, { id: from_slide.attr(config.slideIdAttr), name: from_slide.attr(config.slideIdAttr) });
 			var to_slide = base.slides.eq(fixId(to, true));
-			$.extend(to_slide, { id: to_slide.attr(config.slideIdAttr), name: to_slide.attr(config.slideIdAttr) }, settings);
+			$.extend(to_slide, { id: to_slide.attr(config.slideIdAttr), name: to_slide.attr(config.slideIdAttr) });
 
-			// call the transition
-			base.transitions[config.transition](from_slide, to_slide);
+			// call the transition if it exists
+			base.transitions[config.transition](from_slide, to_slide, config);
 
 			// set to the current slide
 			current = to_slide;
@@ -236,14 +250,16 @@
 				base.nav.steps.removeClass(config.currentNavClass.replace(/\./g, '')).eq(fixId(to, true)).addClass(config.currentNavClass.replace(/\./g, ''));
 			}
 
-			setTimeout(function () { base.runEvent('onChange') }, config.transitionDuration + 500);
+			// run onChange event
+			base.runEvent('onChange');
 
 			return base;
-		}
+		};
 
 		// applies the ie fading fix
 		base.ieFadeFix = function (enable) {
-			base.element.css({ backgroundColor: (enable || true) ? 'black' : 'transparent' });
+			enable = (typeof enable != 'undefined') ? enable : true;
+			base.element.css({ backgroundColor: (enable) ? 'black' : 'transparent' });
 			return base;
 		};
 
@@ -271,48 +287,56 @@
 					},
 					total: base.slides.length
 				}
-			}
+			};
 			return eventData;
-		}
+		};
 
 		// starts the interval timer
 		var startInterval = function () {
 			timer = setInterval(function () { base.next() }, config.interval);
 			return true;
-		}
+		};
 
 		// stops the interval timer
 		var stopInterval = function () {
 			clearInterval(timer);
 			timer = false;
 			return true;
-		}
+		};
 
 		// clears the interval for rotating and starts it again
 		// in case you need to restart counting down
 		base.resetInterval = function () {
 			stopInterval(); startInterval();
 			return base;
-		}
+		};
 
 		// tells you whether we're on timer or not
 		base.isRunning = function () {
 			return (timer === false);
-		}
+		};
 
-		// holds all the available effects for changing slides. 
+		// holds all the available effects for changing slides.
 		// to add a new transition, simply add a new function.
 		base.transitions = {
-			swipe: function (from, to) {
+			swipe: function (from, to, config) {
 				config.zIndex++;
 				width = { start: 0, end: to.parent().innerWidth() }, img = to;
-				img.css({ width: width.start, zIndex: to.zIndex }).animate({ width: width.end }, to.transitionDuration, function () { from.hide() });
+				img.css({ width: width.start, zIndex: config.zIndex, display: 'block'}).animate({ width: width.end }, to.transitionDuration, function () { from.hide() });
 			},
-			fade: function (from, to) {
-				from.fadeOut(from.transitionDuration);
-				to.fadeIn(to.transitionDuration);
+			push: function (from, to, config) {
+				var parent = from.parent();
+				var leftpx = ((config.width * to.attr(config.slideIdAttr)) - config.width);
+				if (leftpx !== 0) {
+					leftpx = leftpx * -1;
+				}
+				parent.animate({ left: leftpx }, config.transitionDuration);
+			},
+			fade: function (from, to, config) {
+				from.fadeOut(config.transitionDuration);
+				to.fadeIn(config.transitionDuration);
 			}
-		}
+		};
 
 		// runs an event if available
 		base.runEvent = function (name, data) {
@@ -321,7 +345,7 @@
 				config.events[name](data);
 			}
 			return base;
-		}
+		};
 
 		// fixes the id to account for going over or under
 		var fixId = function (id, fixForArray) {
@@ -333,21 +357,21 @@
 				id = 1;
 			}
 			return (fixForArray || false) ? (parseInt(id) - 1) : parseInt(id);
-		}
+		};
 
 		// builds the rotator nav and inserts it
 		var buildNav = function () {
-			base.nav = $('<ul />').attr({ id: base.element.id + '-nav', 'class': 'rotator-nav' });
+			base.nav = $('<ul />').attr({ id: base.id + '-nav', 'class': 'rotator-nav' });
 
 			// add a templated nav item
 			var addNavItem = function (data) {
 				base.nav.append($('<li />').attr({ 'class': data.type }).append($('<a />').attr({ href: '#' + data.type, 'class': data.type + '-icon' }).attr(config.slideIdAttr, data.type).html(data.text)));
-			}
+			};
 
 			// add a templated nav item step
 			var addNavItemStep = function (data) {
-				base.nav.append($('<li />').attr({ 'class': 'step ' + data.type }).append($('<a />').attr({ href: '#' + config.slidesNumClass.replace(/\#/, data.num).replace(/\./, '') }).html(data.text).attr(config.slideIdAttr, data.num)));
-			}
+				base.nav.append($('<li />').attr({ 'class': 'step ' + data.type }).append($('<a />').attr({ href: '#' + config.slideNumClass.replace(/\#/, data.num).replace(/\./, '') }).html(data.text).attr(config.slideIdAttr, data.num)));
+			};
 
 			// previous link
 			if (!!config.nav.prev) {
@@ -410,7 +434,7 @@
 					case 'stop':
 						base.stop();
 						break;
-					// its got to be a slide num       
+					// its got to be a slide num
 					default:
 						base.goTo(slideIdAttr);
 				}
@@ -428,12 +452,12 @@
 				base.element.after(base.nav);
 			}
 
-			// set some shortuts
+			// set some shortcuts
 			base.element.nav = base.nav;
 			base.nav.steps = base.nav.find('.step');
 			// set first slide to current
 			base.nav.steps.eq(0).addClass(config.currentNavClass.replace(/\./g, ''));
-		}
+		};
 
 		// initiate the Rotator
 		return init();
@@ -441,9 +465,10 @@
 
 	// jQuery bridge
 	$.fn.rotator = function (options) {
-		return this.each(function () {
-			return new $.Rotator(this, options || {});
+		this.each(function () {
+			new $.Rotator(this, options || {});
 		});
+		return this;
 	};
 
 })(jQuery);
