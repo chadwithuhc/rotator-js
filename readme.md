@@ -15,7 +15,7 @@ A javascript banner rotator built on jQuery with extensive features and expandab
 
 ## Documentation
 
-Documentation is available online at <http://web.cmfolio.com/projects/rotator> or here in `/docs/` of the repo
+Documentation is available online at <http://chadwithuhc.github.io/rotator-js/docs/>
 
 Please view the documentation for changelog, planned future enhancements and some examples.
 
